@@ -15,8 +15,8 @@ function YoutubePage() {
   return (
     <div className="bg-[#0F0F0F] text-white">
       <YouTubeHeader toggleSidebar={toggleSidebar} />
-      <div className="grid grid-cols-[max-content_1fr] gap-3">
-        <Sidebar isOpen={isSidebarOpen} />
+      <div className="grid sm:grid-cols-[max-content_1fr] gap-3 cols-span-1 relative">
+        <Sidebar isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
         <VideoGallery />
       </div>
     </div>

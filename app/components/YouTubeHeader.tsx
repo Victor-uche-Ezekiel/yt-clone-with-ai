@@ -15,7 +15,6 @@ const YouTubeHeader: React.FC<YouTubeHeaderProps> = ({ toggleSidebar }) => {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            // onClick={toggleSidebar}
           >
             <path
               strokeLinecap="round"

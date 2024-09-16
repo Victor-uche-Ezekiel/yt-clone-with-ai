@@ -3,7 +3,7 @@ import { videos } from "./data";
 
 const VideoGallery = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-max w-full custom-scrollbar">
+    <div className="grid grid-cols-[repeat(auto-fill,_minmax(18rem,_1fr))] gap-8 w-full sm:px-1 px-[5rem] h-screen custom-scrollbar">
       {videos.map((video, index) => (
         <div key={index} className="rounded-lg shadow-md">
           <div className="w-full h-[10rem] rounded-t-lg overflow-hidden">
@@ -25,5 +25,4 @@ const VideoGallery = () => {
     </div>
   );
 };
-
 export default VideoGallery;

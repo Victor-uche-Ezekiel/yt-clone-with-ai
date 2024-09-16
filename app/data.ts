@@ -24,7 +24,9 @@ import {
   FaQuestionCircle,
   FaCommentAlt,
   FaChild,
+  FaHome,
 } from "react-icons/fa";
+import { FaHouse, FaHouseMedical } from "react-icons/fa6";
 import { SiYoutubetv, SiYoutubemusic } from "react-icons/si";
 
 interface SidebarItem {
@@ -40,7 +42,7 @@ interface Subscription {
 }
 
 export const mainNavigation: SidebarItem[] = [
-  { icon: FaYoutube, text: "YouTube", className: "text-red-600 text-2xl" },
+  { icon: FaHouse, text: "Home" },
   { icon: FaVideo, text: "Shorts" },
   { icon: FaLayerGroup, text: "Subscriptions" },
 ];
