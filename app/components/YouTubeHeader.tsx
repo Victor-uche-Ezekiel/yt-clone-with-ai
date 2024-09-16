@@ -1,103 +1,79 @@
-import React from "react";
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import {
+  FaBars,
+  FaSearch,
+  FaMicrophone,
+  FaPlusSquare,
+  FaBell,
+  FaYoutube,
+  FaUser,
+} from "react-icons/fa";
 
 interface YouTubeHeaderProps {
   toggleSidebar: () => void;
 }
 
 const YouTubeHeader: React.FC<YouTubeHeaderProps> = ({ toggleSidebar }) => {
+  const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+
   return (
-    <div className="flex items-center justify-between bg-[#0F0F0F] p-4">
+    <div className="flex items-center justify-between gap-9 p-2 bg-black text-white">
       <div className="flex items-center">
-        <button onClick={toggleSidebar} className="mr-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
-        <div className="flex items-center">
-          <img
-            src="https://www.youtube.com/favicon.ico"
-            alt="YouTube Logo"
-            className="h-8 w-8"
-          />
-          <span className="text-white text-lg font-bold ml-2">YouTube</span>
-        </div>
+        <FaBars
+          onClick={toggleSidebar}
+          className="text-xl mr-4 hover:cursor-pointer"
+        />
+        <Link href="#">
+          <FaYoutube className="fill-red-600 text-[3rem]" />
+        </Link>{" "}
       </div>
-      <div className="flex items-center">
-        <div className="relative flex items-center">
-          <input
-            type="text"
-            className="bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-            placeholder="Search"
-          />
-          <button
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-            type="submit"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="ml-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 11a7 7 0 00-7 7m7 7v-1a7 7 0 00-7-7m7 7h-8m2 1l1 1m5-5l7 7-7 7"
-            />
-          </svg>
-        </div>
-        <div className="ml-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-6-6H7a6.002 6.002 0 00-6 6v3a2.032 2.032 0 01-.587.158L5 17h5m5 4a2 2 0 002-2V5a2 2 0 00-2-2h-5a2 2 0 00-2 2v14a2 2 0 002 2h5z"
-            />
-          </svg>
-        </div>
-        <button className="ml-4 rounded-full bg-red-500 px-3 py-2 text-white font-bold">
-          9+
+      <div className="flex items-center flex-grow max-w-2xl">
+        <input
+          type="text"
+          placeholder="Search"
+          className="flex-grow p-2 rounded-l-full bg-gray-900 text-white border border-gray-700 focus:outline-none hidden sm:block"
+          style={{ width: "300px" }} // added a fixed width
+        />
+        <button className="p-2 bg-gray-800 rounded-r-full border border-gray-700">
+          <FaSearch size={20} /> {/* increased icon size */}
         </button>
-        <button className="ml-4 rounded-full bg-blue-500 px-3 py-2 text-white font-bold">
-          V
+        <button className="ml-2 p-2 bg-gray-800 rounded-full">
+          <FaMicrophone />
         </button>
+      </div>
+      <div className="flex items-center relative">
+        <FaPlusSquare className="text-xl mr-4" />
+        <div className="relative mr-4">
+          <FaBell className="text-xl" />
+          <span className="absolute top-0 right-0 bg-red-600 text-xs rounded-full px-1">
+            9+
+          </span>
+        </div>
+        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+          <span className="text-white">V</span>
+        </div>
+        <button
+          className="p-2 bg-gray-800 rounded-full"
+          onClick={() => setShowLoginDropdown(!showLoginDropdown)}
+        >
+          <FaUser />
+        </button>
+        {showLoginDropdown && (
+          <div
+            className="absolute top-full right-0 bg-gray-800 p-2 rounded w-48"
+            style={{ zIndex: 1 }}
+          >
+            <button className="w-full p-2 text-left hover:bg-gray-700">
+              Login
+            </button>
+            <button className="w-full p-2 text-left hover:bg-gray-700">
+              Register
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
